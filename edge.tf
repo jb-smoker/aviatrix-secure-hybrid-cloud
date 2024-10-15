@@ -1,6 +1,6 @@
 module "edge_sv" {
   source              = "terraform-aviatrix-modules/gcp-edge-demo/aviatrix"
-  version             = "3.1.7"
+  version             = "3.1.8"
   region              = var.gcp_region
   pov_prefix          = "sv-${var.gcp_project}-metro-equinix"
   host_vm_size        = var.instance_sizes["gcp"]
