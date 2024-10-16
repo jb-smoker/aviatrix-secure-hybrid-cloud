@@ -8,6 +8,12 @@ This Terraform module deploys deploys an application VNET/VPC and [Gatus](https:
 - `Azure` - BGP connection between Azure route server and the `Azure` Aviatrix transit gateway with an NVA (network virtual appliance) propagating the spoke cidr to ARS.
 - `GCP` - Aviatrix Edge
 
+### Topology
+
+The following depicts the topology deployed.
+
+![Topology](images/sp3.png)
+
 ### Goal
 
 The goal of this infrastructure is to demo the use-case of secure hybrid cloud connectivity.
@@ -35,12 +41,6 @@ The following CSP accounts are required.
 ### Terraform
 
 - **Terraform Version 1.5.0 or later**: This module requires Terraform 1.5.0 or higher. You can install the latest version from the official Terraform website [here](https://www.terraform.io/downloads.html).
-
-## Topology
-
-The following depicts the topology deployed.
-
-![Topology](images/sp3.png)
 
 ## Example terraform code
 
