@@ -31,10 +31,20 @@ iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A FORWARD -i eth0 -p tcp --dport 80 -j ACCEPT
 iptables -A FORWARD -i eth0 -p tcp --dport 443 -j ACCEPT
 iptables -A FORWARD -i eth0 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -i eth0 -p udp --dport 53 -j ACCEPT
 iptables -A FORWARD -i eth0 -p tcp --dport 22 -j ACCEPT
 iptables -A FORWARD -i eth0 -p tcp --dport 5201 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 514 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 1521 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 8443 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 30000 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 5000 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 50100 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 1433 -j ACCEPT
+iptables -A FORWARD -i eth0 -p tcp --dport 3306 -j ACCEPT
 iptables -A FORWARD -i eth0 -p icmp --icmp-type echo-request -j ACCEPT
 iptables -A FORWARD -i eth0 -p icmp --icmp-type echo-reply -j ACCEPT
+iptables -A FORWARD -j DROP
 
 # Save to IPTables file for persistence on reboot
 iptables-save > /etc/iptables/rules.v4
