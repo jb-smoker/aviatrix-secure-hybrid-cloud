@@ -2,27 +2,19 @@
 
 ## Infrastructure Overview
 
-This Terraform module deploys a multi-cloud network infrastructure spanning AWS, Azure, and GCP. The architecture includes the following components:
+This Terraform module deploys a robust, multi-cloud network infrastructure across AWS, Azure, and GCP. The architecture uses **Aviatrix** transit gateways to establish secure, and scalable cross-cloud connectivity, along with centralized monitoring and management tools.
 
-1. **Azure**:
-   - An Azure Virtual Network (VNET) with a **Gatus App** that performs ICMP checks to Free Range Routing (FRR).
-   - Another Azure VNET that contains Aviatrix transit gateways for establishing connections with AWS and GCP.
+### Goal
 
-2. **AWS**:
-   - An AWS Virtual Private Cloud (VPC) that hosts internal applications.
-   - A Virtual Network Gateway (VNG) with a site-to-cloud (S2C) connection to Azure.
+The goal of this infrastructure is to enable businesses to operate a **highly available**, **secure**, and **scalable** multi-cloud environment, which is critical for modern enterprises. By leveraging **Aviatrix** and this integrated network architecture, businesses can:
 
-3. **VNET Peering**:
-   - Peering between Azure VNETs to allow communication between the Gatus App and other Azure services.
+1. **Reduce Downtime and Increase Resilience**: Multi-cloud architecture mitigates the risk of cloud provider outages by ensuring cross-cloud redundancy. With direct connectivity between AWS, Azure, and GCP, applications can fail over to another cloud if needed, ensuring minimal disruption to business operations.
 
-4. **Multi-Cloud Transit Network**:
-   - Aviatrix transit gateways in both Azure and AWS regions.
-   - The gateways are connected through the internet to a GCP VPC, which hosts a KVM guest running Aviatrix Nested Edge and FRR.
+2. **Centralized Network Management**: Using **Aviatrix CoPilot** and **Controller**, IT teams gain a unified platform for managing multi-cloud networks. This centralization helps businesses monitor traffic, troubleshoot issues, and implement security policies across multiple clouds without needing separate tools for each cloud provider.
 
-5. **Management VPC/VNET**:
-   - Aviatrix CoPilot and Aviatrix Controller are deployed for centralized management and monitoring of the cloud network infrastructure.
+3. **Faster Deployment of Services**: By establishing secure, pre-configured communication channels between different clouds, businesses can quickly deploy services in the cloud provider best suited to the task. For example, data analytics can run on GCP while web services are hosted on AWS, without having to re-engineer connectivity each time.
 
-The network is fully integrated across three major cloud providers (AWS, Azure, GCP), using Aviatrix transit gateways to establish connectivity and ensuring redundancy and high availability through multiple routes.
+4. **Hybrid and Multi-Cloud Workflows**: Many businesses operate in a hybrid cloud environment, with workloads split between on-premise infrastructure and multiple clouds. This network architecture facilitates secure, low-latency connectivity between regions and clouds, enabling hybrid deployments to function seamlessly.
 
 ## Requirements
 
