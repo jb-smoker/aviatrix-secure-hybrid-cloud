@@ -44,4 +44,22 @@ The following CSP accounts are required.
 
 ## Example terraform code
 
-See [example terraform](example)
+See [example terraform](example). You may need to modify the csp providers to match the method used for authentication and account/subscription/project selection for each cloud.
+
+## Outputs
+
+The result of the terraform apply is a set of outputs with the URL for each gatus instance.
+
+```terraform
+gatus_dashboard_urls = {
+  "aws" = "http://3.87.211.150"
+  "azure" = "http://40.77.42.240"
+  "edge" = "http://34.118.249.233"
+}
+```
+
+## Gatus Dashboards
+
+Each gatus dashboard for a particular cloud depicts the real-time connectivity to the other 2 clouds. For example, the `Azure` dashboard would show depict connectivity to `AWS` and `Edge`.
+
+![Gatus](images/gatus.png)

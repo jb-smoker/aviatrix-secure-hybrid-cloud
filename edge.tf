@@ -1,9 +1,10 @@
-module "edge_sv" {
+module "edge" {
   source              = "terraform-aviatrix-modules/gcp-edge-demo/aviatrix"
-  version             = "3.1.8"
+  version             = "3.1.9"
   region              = var.gcp_region
-  pov_prefix          = "sv-${var.gcp_project}-metro-equinix"
-  host_vm_size        = var.instance_sizes["gcp"]
+  pov_prefix          = "aviatrix"
+  host_vm_size        = var.instance_sizes["edge"]
+  test_vm_size        = var.instance_sizes["gcp"]
   host_vm_cidr        = "10.40.251.16/28"
   host_vm_asn         = 64900
   host_vm_count       = 1
@@ -17,14 +18,25 @@ module "edge_sv" {
     name     = var.edge_instance_name
     cloud    = "Edge"
     interval = var.gatus_interval
-    inter    = "10.1.2.40,10.2.2.40"
+    inter    = "${var.gatus_private_ips["aws"]},${var.gatus_private_ips["azure"]}"
     password = var.password
   })
-  external_cidrs = ["10.0.0.0/8"]
+  external_cidrs = []
   transit_gateways = [
     module.backbone.transit["aws"].transit_gateway.gw_name,
     module.backbone.transit["azure"].transit_gateway.gw_name,
   ]
-
-  depends_on = [module.backbone]
 }
+
+resource "google_compute_firewall" "rfc1918_ingress" {
+  name    = "rfc1918-ingress"
+  network = "aviatrix-vpc"
+
+  allow {
+    protocol = "all"
+  }
+
+  source_ranges = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+  target_tags   = ["test-instance"]
+}
+

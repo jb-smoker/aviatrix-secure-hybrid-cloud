@@ -37,11 +37,21 @@ variable "instance_sizes" {
   type        = map(string)
   description = "Instance Sizes for each cloud provider"
   default = {
-    aws   = "t3.medium"
-    gcp   = "n1-standard-2"
-    azure = "Standard_B2ms"
-    oci   = "VM.Standard2.2"
-    ali   = "ecs.g5ne.large"
+    aws   = "t3.micro"
+    gcp   = "n1-standard-1"
+    azure = "Standard_B1ms"
+    edge  = "n1-standard-2"
+  }
+}
+
+variable "gatus_private_ips" {
+  type        = map(string)
+  description = "Private ips for the gatus instances"
+  default = {
+    aws   = "10.1.2.40"
+    edge  = "10.40.251.29"
+    azure = "10.2.2.40"
+
   }
 }
 
