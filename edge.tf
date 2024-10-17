@@ -38,5 +38,6 @@ resource "google_compute_firewall" "rfc1918_ingress" {
 
   source_ranges = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
   target_tags   = ["test-instance"]
+  depends_on    = [module.edge]
 }
 
