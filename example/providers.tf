@@ -12,14 +12,9 @@ provider "aws" {
 provider "azurerm" {
   features {}
   skip_provider_registration = true
-  subscription_id            = var.azure_subscription_id
-  client_id                  = var.azure_application_id
-  client_secret              = var.azure_application_key
-  tenant_id                  = var.azure_directory_id
 }
 
 provider "google" {
-  credentials = var.gcp_credentials_path
-  project     = var.gcp_project
-  region      = var.gcp_region
+  project = var.gcp_project
+  region  = var.gcp_region
 }
