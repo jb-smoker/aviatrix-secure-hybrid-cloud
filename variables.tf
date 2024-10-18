@@ -101,4 +101,11 @@ variable "my_ip" {
 variable "edge_image_filename" {
   type        = string
   description = "Full file path to the edge qcow"
+  default     = null
+}
+
+variable "edge_image_location" {
+  type        = string
+  description = "Full file path to the edge qcow hosted on a gcp bucket"
+  default     = null
 }

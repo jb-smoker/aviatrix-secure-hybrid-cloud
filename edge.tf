@@ -11,6 +11,7 @@ module "edge" {
   edge_vm_asn         = 64581
   edge_lan_cidr       = "10.40.251.0/29"
   edge_image_filename = var.edge_image_filename
+  edge_image_location = var.edge_image_location
   test_vm_internet_ingress_ports = [
     "80"
   ]
